@@ -53,7 +53,7 @@ const HomeMainbar = () => {
        <ReactPlayer
            ref={videoPlayerRef}
            className="player"
-           url={vid}
+           url="https://www.youtube.com/shorts/2Xsk9X2PXUI"
            width="100%"
            height="100%"
            playing={playing}
