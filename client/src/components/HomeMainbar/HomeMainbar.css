@@ -72,6 +72,25 @@ align-items: center;
 .display-tags-time .display-time{
     font-size: 13px;
 }
+.video-container{
+    margin-top: 10%;
+}
+.player-wrapper{
+    position: relative;
+}
+.control-wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    opacity: 0;
+    transition: 0.3s;
+}
+.control-wrapper:hover{
+    opacity: 1;
+}
 
 
 

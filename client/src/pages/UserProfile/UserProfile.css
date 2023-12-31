@@ -1,0 +1,83 @@
+.details-container{
+   width: 100%;
+   display: flex;
+   align-items: flex-start;
+   justify-content: space-between;
+}
+
+.user-details{
+    margin-top:10% ;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.user-name{
+    padding-left: 20px;
+}
+.user-name p{
+    color: #7e7e7e;
+}
+.edit-profile-btn{
+    padding: 8px 10px;
+    border: solid 1px #7e7e7e;
+    border-radius:2px;
+    background-color: white;
+    cursor: pointer;
+    transition:0.3s;
+
+}
+.edit-profile-btn:hover{
+    background-color: #f5f9fc;
+}
+.edit-profile-title{
+    padding: 20px 0px;
+    border-bottom: solid 1px #dbd9d9;
+}
+.edit-profile-title-2{
+    color: gray;
+    font-weight: 400;
+}
+.edit-profile-form{
+    padding: 20px;
+    border: solid 1px #dbd9d9;
+}
+.edit-profile-form  h3{
+    margin: 0%;
+    padding: 3px 0px;
+}
+.edit-profile-form  p{
+    margin: 0%;
+    padding: 3px 0px;
+}
+.edit-profile-form input, .edit-profile-form  textarea{
+    padding: 5px;
+    border: solid 1px #dbd9d9;
+    width: 50%;
+    margin-bottom: 20px;
+}
+.user-submit-btn{
+    padding: 14px 10px;
+    background-color: #0a95ff;
+    color: white;
+    border: none;
+    border-radius: 2px;
+}
+.user-submit-btn:hover{
+    background-color: #0074cc;
+}
+.user-cancel-btn{
+    padding: 14px 10px;
+    color: #0a95ff;
+    border-color: transparent;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.badge-display{
+    border: solid 1px black    ;
+    text-decoration: none;
+    padding: 5px;
+    color: #7e7e7e;
+    font-size: 16px;
+    display: inline-block;
+}

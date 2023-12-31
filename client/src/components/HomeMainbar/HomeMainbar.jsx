@@ -1,66 +1,70 @@
-import React from 'react'
-import {useLocation,Link} from "react-router-dom"
+import React ,{useRef,useState}from 'react'
+import {useLocation,Link, useNavigate} from "react-router-dom"
 import QuestionList from './QuestionList';
 import "./HomeMainbar.css"
+import {useSelector} from "react-redux";
+import ReactPlayer from "react-player";
+// import { Container } from "@mui/material";
+import Control from '../Control/Control';
+import vid from "../../assets/vid.MP4"
+
+
 
 const HomeMainbar = () => {
-
-  var questionsList = [{
-      _id:1,
-      upVote:2,
-      downVote:1,
-      noOfAnswers:2,
-      questionTitle:"What is a function?",
-      questionBody:"It is meant to be",
-      questionTags:["java","c++","python"],
-      userPosted:"diggi",
-      askedOn:"Dec 8",
-      userId:1,
-      answer:[{
-        answerBody:"Answer",
-        userAnswered:"Nayak",
-        answeredOn:"Dec 9",
-        userId: 2
-      }]
-  },{
-    _id:2,
-    upVote:2,
-    downVote:1,
-    noOfAnswers:2,
-    questionTitle:"What is a function2?",
-    questionBody:"It is meant to be2",
-    questionTags:["java","c++","python"],
-    userPosted:"diggi",
-    askedOn:"Dec 9",
-    userId:1,
-    answer:[{
-      answerBody:"Answer",
-      userAnswered:"Nayak",
-      answeredOn:"Dec 9",
-      userId: 2
-    }]
-},{
-  _id:3,
-  upVote:2,
-    downVote:1,
-  noOfAnswers:2,
-  questionTitle:"What is a function3?",
-  questionBody:"It is meant to be3",
-  questionTags:["java","c++","python"],
-  userPosted:"diggi",
-  askedOn:"Dec 10",
-  userId:1, answer:[{
-    answerBody:"Answer",
-    userAnswered:"Nayak",
-    answeredOn:"Dec 9",
-    userId: 2
-  }]
-}]
+  
 
   const location = useLocation();
-  const user = 1;
+  const user = useSelector((state)=> state.currentUserReducer);
+  const navigate = useNavigate();
+  const questionsList = useSelector(state=>state.questionsReducer)
+  const [videoState, setVideoState] = useState({
+    playing: true,
+    muted: true,
+    volume: 0.5,
+    played: 0,
+    seeking: false,
+  Buffer : true
+  });
+  const {playing, muted} = videoState;
+
+  const playPauseHandler = () => {
+    
+      setVideoState({ ...videoState, playing: !videoState.playing });
+  };
+  const videoPlayerRef = useRef(null);
+
+  const rewindHandler = () => {
+   
+      videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 10);
+    };
+    const fastFowardHandler = () => {
+      
+        videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
+      };
+    const muteHandler = ()=>{
+      setVideoState({...videoState, muted:!videoState.muted})
+      console.log(videoState.muted);
+    }
+
   return (
     <div className='main-bar'>
+     { location.pathname==='/' ? <><div className="video-container">
+       <div className="player-wrapper">
+       <ReactPlayer
+           ref={videoPlayerRef}
+           className="player"
+           url={vid}
+           width="100%"
+           height="100%"
+           playing={playing}
+           muted={muted}
+         />
+        <div className="control-wrapper">
+          <Control onPlayPause={playPauseHandler} playing={playing} onRewind={rewindHandler} onForward ={fastFowardHandler} mute={muted} muteHandler={muteHandler}/>
+        </div>
+     </div> 
+ </div>
+ </> : <></>}
       <div className="main-bar-header">
       {
         location.pathname === '/' ? <h1>Top Questions</h1> : <h1>All Questions</h1>
@@ -69,11 +73,11 @@ const HomeMainbar = () => {
       </div>
       <div>
         {
-          questionsList === null ?
+          questionsList.data === null ?
           <h1>Loading....</h1> :
           <>
-          <p>{questionsList.length} Questions</p>{
-            <QuestionList questionsList={questionsList} />}
+          <p>{questionsList.data.length} Questions</p>{
+            <QuestionList questionsList={questionsList.data} />}
           </>
         
         }
