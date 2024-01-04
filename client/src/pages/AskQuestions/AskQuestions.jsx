@@ -14,19 +14,9 @@ const AskQuestions = () => {
     const [questionBody,setQuestionBody] = useState('');
     const [questionTags,setQuestionTags] = useState('');
 
-
-
-
-    
-    const handleSubmit = (e) =>{
+    const handleSubmit =  (e) =>{
         e.preventDefault();
-            dispatch(askQuestion({questionTitle,questionBody,questionTags, userPosted: User.result.name,userId:User?.result?._id},navigate))
-            if(question === 404){
-                alert("Limit Exceeded")
-            }
-            else if(question === 405){
-                alert("No User Found")
-            }
+             dispatch(askQuestion({questionTitle,questionBody,questionTags, userPosted: User.result.name,userId:User?.result?._id},navigate))
     }
     const handleEnter =(e) =>{
         if(e.key === 'Enter'){

@@ -15,6 +15,7 @@ function App() {
   useEffect(()=>{
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
+    
   },[dispatch])
 
   return (

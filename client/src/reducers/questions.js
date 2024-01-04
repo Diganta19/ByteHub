@@ -6,8 +6,7 @@ const questionsReducer = (state ={data:null},action) =>{
             return{...state}
         case "FETCH_ALL_QUESTIONS":
             return {...state,data: action.payload}
-        case "POST_QUESTION_ERROR":
-            return action.payload
+
         default:
             return state;
     }

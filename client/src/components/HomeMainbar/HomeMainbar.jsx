@@ -6,17 +6,16 @@ import {useSelector} from "react-redux";
 import ReactPlayer from "react-player";
 // import { Container } from "@mui/material";
 import Control from '../Control/Control';
-import vid from "../../assets/vid.MP4"
-
+import { useEffect } from 'react';
 
 
 const HomeMainbar = () => {
-  
-
   const location = useLocation();
   const user = useSelector((state)=> state.currentUserReducer);
   const navigate = useNavigate();
   const questionsList = useSelector(state=>state.questionsReducer)
+
+  
   const [videoState, setVideoState] = useState({
     playing: true,
     muted: true,
@@ -26,7 +25,6 @@ const HomeMainbar = () => {
   Buffer : true
   });
   const {playing, muted} = videoState;
-
   const playPauseHandler = () => {
     
       setVideoState({ ...videoState, playing: !videoState.playing });
@@ -34,16 +32,22 @@ const HomeMainbar = () => {
   const videoPlayerRef = useRef(null);
 
   const rewindHandler = () => {
-   
       videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 10);
     };
     const fastFowardHandler = () => {
-      
         videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
       };
     const muteHandler = ()=>{
       setVideoState({...videoState, muted:!videoState.muted})
       console.log(videoState.muted);
+    }
+    const checkAuth = () =>{
+      if(user === null){
+        alert("Login or Signup to ask a question")
+        navigate('/Auth')
+      }else{
+        navigate("/AskQuestions")
+      }
     }
 
   return (
@@ -69,15 +73,18 @@ const HomeMainbar = () => {
       {
         location.pathname === '/' ? <h1>Top Questions</h1> : <h1>All Questions</h1>
       }
-      <Link to={user === null ? "/Auth" : "/AskQuestions" } className='ask-btn'>Ask Question</Link>
+      <button onClick={checkAuth}className='ask-btn'>Ask Question</button>
       </div>
       <div>
         {
-          questionsList.data === null ?
+           questionsList.data === null ?
+    
           <h1>Loading....</h1> :
           <>
-          <p>{questionsList.data.length} Questions</p>{
-            <QuestionList questionsList={questionsList.data} />}
+           <p>{questionsList.data.length} Questions</p>{ 
+         
+             <QuestionList questionsList={questionsList.data} />}
+           
           </>
         
         }

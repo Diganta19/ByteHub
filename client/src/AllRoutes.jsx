@@ -9,8 +9,8 @@ import Tags from './pages/Tags/Tags'
 import Users from './pages/Users/Users'
 import UserProfile from './pages/UserProfile/UserProfile'
 import Subscription from './pages/Subscription/Subscription'
-import LinkDisplay from './pages/Subscription/LinkDisplay'
-import Success from "./pages/Subscription/Success"
+
+    
 
 const AllRoutes = () => {
 return (
@@ -24,8 +24,7 @@ return (
 <Route  path="/Tags" element={<Tags/>}/>
 <Route path="/Users" element={<Users/>}/>
 <Route path="/User/:id" element={<UserProfile/>}/>
-<Route path="/PaymentLink" element={<LinkDisplay />}/>
-<Route path="/success/:id" element={<Success />}/>
+
 </Routes>
 )
 }

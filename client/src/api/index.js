@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API = axios.create({baseURL:'http://localhost:8000'})
+const API = axios.create({baseURL:'https://bytehub-server-fts0.onrender.com'})
 
 
 API.interceptors.request.use((req)=>{
@@ -24,4 +24,5 @@ export const deleteAnswer = (id,answerId,noOfAnswers) => API.patch(`/answers/del
 export const fetchAllUsers = () => API.get("/user/getAllUsers")
 export const updateProfile =(id,updateData) =>API.patch(`/user/update/${id}`,updateData)
 export const subscription = (itemId,userId) => API.post('/subscription/create-checkout-session',{itemId,userId})
-export const updateSubscription = (id,subscription) => API.patch(`/subscription/update/${id}`,subscription)
+export const verifyPayment = (response) => API.post('/subscription/verify',response)
+export const updateSubscription = (id,subplan) => API.patch(`/subscription/update/${id}`,subplan)

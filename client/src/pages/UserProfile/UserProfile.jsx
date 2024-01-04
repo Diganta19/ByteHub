@@ -22,16 +22,16 @@ const UserProfile = () => {
 
 
     const determineBadge= ()=>{
-        if(currentUser?.result?.points >=0 && currentUser?.result?.points<10){
+        if(currentProfile?.points >=0 && currentProfile?.points<10){
             return 'Newbie';
         }
-        if(currentUser?.result?.points >=10 && currentUser?.result?.points<50){
+        if(currentProfile?.points >=10 && currentProfile?.points<50){
             return 'Intermediate ';
         }
-        if(currentUser?.result?.points >=50 && currentUser?.result?.points<100){
+        if(currentProfile?.points >=50 && currentProfile?.points<100){
             return 'Pro';
         }
-        if(currentUser?.result?.points >=100 ){
+        if(currentProfile?.points >=100 ){
             return 'Advanced';
         }else{
             return null;
@@ -40,9 +40,7 @@ const UserProfile = () => {
     }
     
     const badges = determineBadge();
-    // const handleSeeBadge =()=>{
-    //     setSeeBadge(p=>!p) 
-    // }
+   
  
   return (
     <div className='home-container-1'>
@@ -54,12 +52,12 @@ const UserProfile = () => {
                             <Avatar  backgroundColor="purple" color='white' fontSize='50px' py='30px' px='40px'>
                             {currentProfile?.name.charAt(0).toUpperCase()}
                             </Avatar>
-                            <h3 style={{'paddingLeft':'20px'}}>User Points: {currentUser?.result?.points}</h3>
-                            {/* <button onClick={handleSeeBadge}>See Badges</button> */}
+                            <h3 style={{'paddingLeft':'20px'}}>User Points: {currentProfile?.points}</h3>
+                           
                             <h3 style={{'paddingLeft':'20px'}}>Badges Earned:<span className='badge-display'>{badges}<img src={medal} /></span></h3>
                             <div className="user-name">
                                 <h1>{currentProfile?.name}</h1>
-                                <h3>{currentUser?.result?.subscription} Member</h3>
+                                <h3>{currentProfile?.subscription} Member</h3>
                                 <p><FontAwesomeIcon icon={faBirthdayCake}/> Joined {moment(currentProfile?.joinedOn).fromNow()}</p>
                             </div>
                             <div>

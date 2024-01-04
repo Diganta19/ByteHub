@@ -61,12 +61,12 @@ const Auth = () => {
           {!isSignup && <h4 style={{ color: "#007ac6", fontSize:"13px"}}>forgot password?</h4>}
         </div>
         <input type="password" name='password' id='password' onChange={(e)=>{setPassword(e.target.value)}}/>
-        { isSignup && <p>Passwords must contain at least eight<br/> characters, including at least 1 letter and 1<br/> number.</p>}
+        { isSignup && <p>Passwords must contain at least 8<br/> characters, including at least 1 letter and 1<br/> number.</p>}
       </label>
       {
           isSignup && (
           <label htmlFor='check'>
-          <input type="checkbox" id='check' />
+          <input type="checkbox" className='check' />
             <p style={{fontSize:"13px"}}>
               Opt-in to receive occasional,<br />
               product updates, user research invitations,<br />
@@ -79,9 +79,8 @@ const Auth = () => {
       {
           isSignup &&   (
           <p style={{ color: "#666767", fontSize:"13px"}}> 
-            By clicking "Sign up", you agree to our <span style={{ color: "#007ac6"}}>terms of<br />
-            service</span>, <span style={{ color: "#007ac6"}}>privacy policy</span> and <span style={{ color: "#007ac6"}}>cookie policy</span>
-            I 
+            By clicking "Sign up", you agree to our <span style={{ color: "#007ac6"}}>Terms of<br />
+            Service</span>, <span style={{ color: "#007ac6"}}>Privacy Policy</span> and <span style={{ color: "#007ac6"}}>Cookie Policy</span>  
           </p>
           )
         

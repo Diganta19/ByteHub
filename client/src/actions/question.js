@@ -1,5 +1,6 @@
 
 import * as api from "../api" 
+import { fetchAllUsers } from "./users"
 
 export const askQuestion = (questionData,navigate) => async(dispatch)=> {
   try {
@@ -7,9 +8,13 @@ export const askQuestion = (questionData,navigate) => async(dispatch)=> {
 
     dispatch({type:"POST_QUESTION", payload: data})
     dispatch(fetchAllQuestions())
+  
     navigate('/')
   } catch (error) {
-     dispatch({type:"POST_QUESTION_ERROR",payload:error.response.status})
+    if(error.response.status === 404){
+      alert("Limit Exceeded")
+    }
+     dispatch(fetchAllQuestions())
   }
 }
 
@@ -40,15 +45,6 @@ export const voteQuestion = (id,value,userId) => async(dispatch) =>{
       console.log(error);
     }
 }
-
-
-
-
-
-
-
-
-
 
 export const postAnswer = (answerData) => async(dispatch) =>{
   try {

@@ -20,10 +20,10 @@ export const updateProfile = (id,updateData) =>async(dispatch) =>{
     }
 }
 
-export const updateSubscription = (id,subscription) => async(dispatch) =>{
+export const updateSubscription = (id,subplan) => async(dispatch) =>{
     try {
-
-        const {data} = await api.updateSubscription(id,subscription) 
+        
+        const {data} = await api.updateSubscription(id,subplan) 
         dispatch({type:'UPDATE_CURRENT_USER',payload: data})
     } catch (error) {
         console.log(error);
